@@ -102,20 +102,27 @@ Claude Code 안에서 아래 명령어를 실행하면 코드베이스를 분석
 
 ## 4. 커스텀 명령어
 
-`.claude/commands/` 폴더에 마크다운 파일을 만들면 슬래시 명령어로 등록된다. 자주 쓰는 프롬프트를 명령어로 만들어두면 매번 긴 프롬프트를 입력할 필요가 없다.
+`.claude/commands/` 폴더에 마크다운 파일을 만들면 슬래시 명령어로 등록된다. `$ARGUMENTS` 변수로 인자도 받을 수 있다. 자주 쓰는 프롬프트를 명령어로 만들어두면 매번 긴 프롬프트를 입력할 필요가 없다.
 
-CLAUDE.md와의 차이점:
-- CLAUDE.md는 매 대화에 **자동으로** 포함된다
-- 커스텀 명령어는 명시적으로 호출할 때만 사용된다
+```
+.claude/
+  commands/
+    summarize.md      ->  /summarize 로 사용 가능
+    code-review.md    ->  /code-review 로 사용 가능
+    write-tests.md    ->  /write-tests 로 사용 가능
+```
+
+CLAUDE.md와 다르게 매 대화에 자동으로 포함되지 않고, 명시적으로 호출할 때만 사용된다는 점이 핵심 차이다.
 
 ### 만드는 방법
 
+먼저 폴더를 만든다:
+
 ```bash
-# 폴더 생성
 mkdir -p .claude/commands
 ```
 
-예시 명령어 3가지:
+그 안에 명령어 이름으로 마크다운 파일을 만들고 내용을 작성한다:
 
 `summarize.md`
 ```
